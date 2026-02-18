@@ -1,0 +1,11 @@
+# CODEOWNERS for Impel-Marketing-AI/.github
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything in this repo
+* @Impel-Marketing-AI/optimus-prime
+
+# Workflow files
+.github/workflows/ @Impel-Marketing-AI/optimus-prime
+
+# Label definitions
+labels/ @Impel-Marketing-AI/optimus-prime
