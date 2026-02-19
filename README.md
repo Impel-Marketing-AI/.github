@@ -30,7 +30,7 @@ The `labels/labels.json` file defines standardized labels used across org reposi
 
 | Label | Color | Purpose |
 |-------|-------|---------|
-| `qa: needs testing` | `#D4A017` | PR requires QA verification |
+| `qa: needs testing` | `#D4A017` | PR is ready for QA verification |
 | `qa: tested` | `#13A688` | QA has verified the PR — unblocks merge |
 | `qa: failed` | `#D03C38` | QA found issues — merge remains blocked |
 | `feature` | `#410099` | Release-drafter: new feature or capability |
