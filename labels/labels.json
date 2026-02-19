@@ -26,7 +26,7 @@
   },
   {
     "name": "dependencies",
-    "description": "Dependency updates (Dependabot, Renovate, etc.)",
+    "description": "Dependency updates",
     "color": "0366D6"
   },
   {
