@@ -2,7 +2,7 @@
   {
     "name": "feature",
     "description": "New feature or enhancement request",
-    "color": "0E8A16"
+    "color": "7057FF"
   },
   {
     "name": "enhancement",
@@ -17,7 +17,7 @@
   {
     "name": "bug",
     "description": "Something isn't working",
-    "color": "FC2929"
+    "color": "D73A4A"
   },
   {
     "name": "chore",
