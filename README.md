@@ -30,13 +30,15 @@ The `labels/labels.json` file defines standardized labels used across org reposi
 
 | Label | Color | Purpose |
 |-------|-------|---------|
-| `qa: needs testing` | — | PR requires QA verification |
-| `qa: tested` | — | QA has verified the PR — unblocks merge |
-| `qa: failed` | — | QA found issues — merge remains blocked |
-| `feature` | — | Release-drafter: new feature |
-| `enhancement` | — | Release-drafter: improvement |
-| `fix` / `bugfix` / `bug` | — | Release-drafter: bug fix |
-| `chore` | — | Release-drafter: maintenance |
+| `qa: needs testing` | `#D4A017` | PR requires QA verification |
+| `qa: tested` | `#13A688` | QA has verified the PR — unblocks merge |
+| `qa: failed` | `#D03C38` | QA found issues — merge remains blocked |
+| `feature` | `#410099` | Release-drafter: new feature or capability |
+| `enhancement` | `#635DFF` | Release-drafter: improvement to existing feature |
+| `fix` | `#E5534B` | Release-drafter: bug fix |
+| `bug` | `#E5534B` | Release-drafter: something isn't working |
+| `chore` | `#8B8680` | Release-drafter: maintenance |
+| `dependencies` | `#1D76DB` | Release-drafter: dependency updates |
 
 ---
 
