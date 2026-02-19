@@ -12,12 +12,12 @@
   {
     "name": "fix",
     "description": "Bug fix",
-    "color": "D73A4A"
+    "color": "E5534B"
   },
   {
     "name": "bug",
     "description": "Something isn't working",
-    "color": "D73A4A"
+    "color": "E5534B"
   },
   {
     "name": "chore",
