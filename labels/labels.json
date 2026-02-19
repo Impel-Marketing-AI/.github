@@ -30,6 +30,11 @@
     "color": "1D76DB"
   },
   {
+    "name": "qa: needs testing",
+    "description": "PR is ready for QA verification",
+    "color": "D4A017"
+  },
+  {
     "name": "qa: tested",
     "description": "QA has verified the changes in this PR",
     "color": "13A688"
