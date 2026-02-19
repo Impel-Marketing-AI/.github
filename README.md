@@ -37,7 +37,7 @@ The `labels/labels.json` file defines standardized labels used across org reposi
 | `enhancement` | `#635DFF` | Release-drafter: improvement to existing feature |
 | `fix` | `#E5534B` | Release-drafter: bug fix |
 | `bug` | `#E5534B` | Release-drafter: something isn't working |
-| `chore` | `#8B8680` | Release-drafter: maintenance |
+| `chore` | `#8B8680` | Release-drafter: maintenance, refactoring, or tooling |
 | `dependencies` | `#1D76DB` | Release-drafter: dependency updates |
 
 ---
