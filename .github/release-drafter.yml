@@ -35,6 +35,11 @@ autolabeler:
     branch:
       - '/^deps\/.+/'
       - '/^dependencies\/.+/'
+      - '/^dependabot\/.+/'
+      - '/^renovate\/.+/'
+    files:
+      - 'package-lock.json'
+      - '**/package-lock.json'
 
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&'
