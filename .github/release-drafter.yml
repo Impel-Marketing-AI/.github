@@ -16,7 +16,8 @@ categories:
     labels:
       - 'dependencies'
   - title: '🧰 Maintenance'
-    label: 'chore'
+    labels:
+      - 'chore'
 
 autolabeler:
   - label: 'feature'
