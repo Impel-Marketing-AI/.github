@@ -11,12 +11,32 @@ This is the **organization-level `.github` repository** for [Impel-Marketing-AI]
 ```
 .github/
 ├── CODEOWNERS                      # Org-wide code ownership rules
+├── release-drafter.yml             # Org-wide Release Drafter config
 ├── labels/
 │   └── labels.json                 # Shared label definitions (QA, release-drafter, etc.)
 ├── workflows/
 │   └── qa-gate.yml                 # Reusable QA Gate workflow
 └── README.md                       # This file
 ```
+
+### Release Drafter (org-level config)
+
+The `.github/release-drafter.yml` file in this repo serves as the **default Release Drafter configuration for all repositories** in the org. This works because Release Drafter has built-in support for org-level config inheritance from the `.github` repository.
+
+**How it works:**
+
+1. When Release Drafter runs in a repo, it looks for a config file in this order:
+   - The repo's own `.github/release-drafter.yml` (or the path set via `config-name`)
+   - The org `.github` repo's `.github/release-drafter.yml` (automatic fallback)
+2. If a repo has no local config and no `config-name` override, it automatically picks up the org-level config from this repo.
+
+**For consuming repos, no extra setup is needed** — just ensure:
+- The repo's build workflow calls `release-drafter/release-drafter@v6` without a `config-name` input
+- There is **no** local `.github/release-drafter.yml` in the repo (otherwise it takes precedence)
+
+A repo can still override the org config by adding its own `.github/release-drafter.yml`.
+
+> **Reference:** [Release Drafter — Configuration options](https://github.com/release-drafter/release-drafter#configuration-options)
 
 ### Reusable Workflows
 
@@ -30,13 +50,15 @@ The `labels/labels.json` file defines standardized labels used across org reposi
 
 | Label | Color | Purpose |
 |-------|-------|---------|
-| `qa: needs testing` | — | PR requires QA verification |
-| `qa: tested` | — | QA has verified the PR — unblocks merge |
-| `qa: failed` | — | QA found issues — merge remains blocked |
-| `feature` | — | Release-drafter: new feature |
-| `enhancement` | — | Release-drafter: improvement |
-| `fix` / `bugfix` / `bug` | — | Release-drafter: bug fix |
-| `chore` | — | Release-drafter: maintenance |
+| `qa: needs testing` | `#D4A017` | PR is ready for QA verification |
+| `qa: tested` | `#13A688` | QA has verified the changes in this PR |
+| `qa: failed` | `#D03C38` | QA found issues with this PR |
+| `feature` | `#410099` | Release-drafter: new feature or capability |
+| `enhancement` | `#635DFF` | Release-drafter: improvement to existing feature |
+| `fix` | `#E5534B` | Release-drafter: bug fix |
+| `bug` | `#E5534B` | Release-drafter: something isn't working |
+| `chore` | `#8B8680` | Release-drafter: maintenance, refactoring, or tooling |
+| `dependencies` | `#1D76DB` | Release-drafter: dependency updates |
 
 ---
 
@@ -77,3 +99,4 @@ The **QA Gate** workflow is enforced via GitHub org-level rulesets:
 - [GitHub Docs — Creating a `.github` repository](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file)
 - [GitHub Docs — Reusing workflows](https://docs.github.com/en/actions/sharing-automations/reusing-workflows)
 - [GitHub Docs — Repository rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets)
+- [Release Drafter — Configuration](https://github.com/release-drafter/release-drafter#configuration-options)

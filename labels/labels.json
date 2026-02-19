@@ -1,0 +1,47 @@
+[
+  {
+    "name": "feature",
+    "description": "New feature or capability",
+    "color": "410099"
+  },
+  {
+    "name": "enhancement",
+    "description": "Improvement to an existing feature",
+    "color": "635DFF"
+  },
+  {
+    "name": "fix",
+    "description": "Bug fix",
+    "color": "E5534B"
+  },
+  {
+    "name": "bug",
+    "description": "Something isn't working",
+    "color": "E5534B"
+  },
+  {
+    "name": "chore",
+    "description": "Maintenance, refactoring, or tooling",
+    "color": "8B8680"
+  },
+  {
+    "name": "dependencies",
+    "description": "Dependency updates",
+    "color": "1D76DB"
+  },
+  {
+    "name": "qa: needs testing",
+    "description": "PR is ready for QA verification",
+    "color": "D4A017"
+  },
+  {
+    "name": "qa: tested",
+    "description": "QA has verified the changes in this PR",
+    "color": "13A688"
+  },
+  {
+    "name": "qa: failed",
+    "description": "QA found issues with this PR",
+    "color": "D03C38"
+  }
+]
