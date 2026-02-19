@@ -31,6 +31,10 @@ autolabeler:
   - label: 'chore'
     branch:
       - '/^chore\/.+/'
+  - label: 'dependencies'
+    branch:
+      - '/^deps\/.+/'
+      - '/^dependencies\/.+/'
 
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&'
