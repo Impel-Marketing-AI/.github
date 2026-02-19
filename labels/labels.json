@@ -22,12 +22,12 @@
   {
     "name": "chore",
     "description": "Maintenance, refactoring, or tooling",
-    "color": "FEF2C0"
+    "color": "E8A735"
   },
   {
     "name": "dependencies",
     "description": "Dependency updates",
-    "color": "0366D6"
+    "color": "1D76DB"
   },
   {
     "name": "qa: tested",
