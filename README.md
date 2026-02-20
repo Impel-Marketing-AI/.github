@@ -93,7 +93,7 @@ The reusable QA Gate workflow needs to remove labels and post comments on pull r
 |-----------|-------|-----|
 | `pull-requests` | `write` | Remove the `qa: tested` label when the PR author self-applies it; post an explanatory comment |
 
-> **Note:** `contents: read` is **not** required by the QA Gate workflow (it uses `actions/github-script` for API calls only — no checkout or file access). However, GitHub automatically grants `contents: read` whenever a `permissions` block is present, so it does not need to be explicitly listed.
+> **Note:** `contents: read` is **not** required by the QA Gate workflow (it uses `actions/github-script` for API calls only — no checkout or file access). When you add a `permissions` block, GitHub restricts the token to only the permissions you explicitly list, so `contents: read` is intentionally not granted (and therefore not listed) because it is not needed.
 
 **Option A — Rely on org/repo defaults (recommended)**
 
