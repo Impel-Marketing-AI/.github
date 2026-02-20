@@ -9,14 +9,15 @@ This is the **organization-level `.github` repository** for [Impel-Marketing-AI]
 ## What's in this repo
 
 ```
-.github/
-├── CODEOWNERS                      # Org-wide code ownership rules
-├── release-drafter.yml             # Org-wide Release Drafter config
+.github/                              ← repo root
+├── .github/
+│   ├── release-drafter.yml           ← Org-wide Release Drafter config
+│   └── workflows/
+│       └── qa-gate.yml               ← Reusable QA Gate workflow
+├── CODEOWNERS                        ← Org-wide code ownership rules
 ├── labels/
-│   └── labels.json                 # Shared label definitions (QA, release-drafter, etc.)
-├── workflows/
-│   └── qa-gate.yml                 # Reusable QA Gate workflow
-└── README.md                       # This file
+│   └── labels.json                   ← Shared label definitions
+└── README.md                         ← This file
 ```
 
 ### Release Drafter (org-level config)
@@ -42,7 +43,7 @@ A repo can still override the org config by adding its own `.github/release-draf
 
 | Workflow | File | Purpose |
 |----------|------|---------|
-| **QA Gate** | `workflows/qa-gate.yml` | Checks PRs for the `qa: tested` label before allowing merge. Reports pass/fail as a `QA Gate` status check. |
+| **QA Gate** | `.github/workflows/qa-gate.yml` | Checks PRs for the `qa: tested` label before allowing merge. Reports pass/fail as a `QA Gate` status check. |
 
 ### Label Definitions
 
@@ -64,7 +65,7 @@ The `labels/labels.json` file defines standardized labels used across org reposi
 
 ## How repos consume reusable workflows
 
-Any repository in the org can reference a reusable workflow from this repo using the `uses` keyword with the full org path:
+Any repository in the org can reference a reusable workflow from this repo using the `uses` keyword with the full org path. Per [GitHub security best practices](https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions#using-third-party-actions), pin the reference to a **commit SHA** rather than a branch name to ensure immutable, auditable builds.
 
 ```yaml
 # .github/workflows/qa-gate.yml (in the consuming repo)
@@ -76,10 +77,60 @@ on:
 
 jobs:
   qa-gate:
-    uses: Impel-Marketing-AI/.github/.github/workflows/qa-gate.yml@main
+    # Pin to a specific commit SHA for security — update when the reusable workflow changes
+    uses: Impel-Marketing-AI/.github/.github/workflows/qa-gate.yml@afe23d613d2eff78c62c4e6241674aa2f9ce8156
 ```
 
+> **Tip:** To find the latest SHA, run `git ls-remote https://github.com/Impel-Marketing-AI/.github refs/heads/main` or check the latest commit on the `main` branch.
+
 The caller workflow is typically only a few lines — all logic lives in the reusable workflow in this repo.
+
+### Required permissions
+
+The reusable QA Gate workflow needs to remove labels and post comments on pull requests. Because reusable workflows **inherit the caller's `GITHUB_TOKEN` permissions**, the caller must ensure the token has the required scopes.
+
+| Permission | Level | Why |
+|-----------|-------|-----|
+| `pull-requests` | `write` | Remove the `qa: tested` label when the PR author self-applies it; post an explanatory comment |
+| `contents` | `read` | Default read access for checkout (already granted by GitHub's default token) |
+
+**Option A — Rely on org/repo defaults (recommended)**
+
+If your org or repo default token permissions already include `pull-requests: write` (GitHub's default for non-fork PRs), no `permissions` block is needed in the caller workflow:
+
+```yaml
+name: QA Gate
+on:
+  pull_request:
+    types: [opened, labeled, unlabeled, synchronize]
+    branches: [develop, 'releases/*']
+
+jobs:
+  qa-gate:
+    uses: Impel-Marketing-AI/.github/.github/workflows/qa-gate.yml@afe23d613d2eff78c62c4e6241674aa2f9ce8156
+```
+
+**Option B — Explicit permissions (if org defaults are restrictive)**
+
+If your org or repo has set the default `GITHUB_TOKEN` to read-only, you must explicitly grant the required permissions in the caller:
+
+```yaml
+name: QA Gate
+on:
+  pull_request:
+    types: [opened, labeled, unlabeled, synchronize]
+    branches: [develop, 'releases/*']
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  qa-gate:
+    uses: Impel-Marketing-AI/.github/.github/workflows/qa-gate.yml@afe23d613d2eff78c62c4e6241674aa2f9ce8156
+```
+
+> **Warning:** Setting `permissions: contents: read` alone (without `pull-requests: write`) will break the QA Gate workflow — it will be unable to remove labels or post comments.
 
 ---
 
@@ -99,4 +150,5 @@ The **QA Gate** workflow is enforced via GitHub org-level rulesets:
 - [GitHub Docs — Creating a `.github` repository](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file)
 - [GitHub Docs — Reusing workflows](https://docs.github.com/en/actions/sharing-automations/reusing-workflows)
 - [GitHub Docs — Repository rulesets](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets)
+- [GitHub Docs — Security hardening for GitHub Actions](https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions)
 - [Release Drafter — Configuration](https://github.com/release-drafter/release-drafter#configuration-options)
