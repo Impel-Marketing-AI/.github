@@ -10,7 +10,6 @@ categories:
       - 'enhancement'
   - title: '🐛 Bug Fixes'
     labels:
-      - 'fix'
       - 'bug'
   - title: '📦 Dependencies'
     labels:
@@ -24,7 +23,7 @@ autolabeler:
     branch:
       - '/^feat\/.+/'
       - '/^feature\/.+/'
-  - label: 'fix'
+  - label: 'bug'
     branch:
       - '/^fix\/.+/'
       - '/^bug\/.+/'
