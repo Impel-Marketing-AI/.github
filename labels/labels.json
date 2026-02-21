@@ -30,6 +30,11 @@
     "color": "1D76DB"
   },
   {
+    "name": "documentation",
+    "description": "Improvements or additions to documentation",
+    "color": "0075CA"
+  },
+  {
     "name": "qa: needs testing",
     "description": "PR is ready for QA verification",
     "color": "D4A017"
