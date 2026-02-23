@@ -10,14 +10,9 @@
     "color": "635DFF"
   },
   {
-    "name": "fix",
-    "description": "Bug fix",
-    "color": "E5534B"
-  },
-  {
     "name": "bug",
-    "description": "Something isn't working",
-    "color": "E5534B"
+    "description": "Bug fix",
+    "color": "B60205"
   },
   {
     "name": "chore",
@@ -28,6 +23,11 @@
     "name": "dependencies",
     "description": "Dependency updates",
     "color": "1D76DB"
+  },
+  {
+    "name": "documentation",
+    "description": "Improvements or additions to documentation",
+    "color": "006B75"
   },
   {
     "name": "qa: needs testing",
