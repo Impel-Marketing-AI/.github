@@ -19,8 +19,6 @@ jobs:
             const prAuthor = pr.user.login;
             const sender = context.payload.sender.login;
             const action = context.payload.action;
-            const labels = pr.labels.map(l => l.name);
-            const hasQaTested = labels.includes('qa: tested');
 
             // If the PR author applied the qa: tested label themselves, remove it and fail
             if (action === 'labeled' && context.payload.label?.name === 'qa: tested' && sender === prAuthor) {
@@ -42,7 +40,27 @@ jobs:
               return;
             }
 
-            // Check if the qa: tested label is present
+            // If a non-author applied the qa: tested label, pass immediately
+            if (action === 'labeled' && context.payload.label?.name === 'qa: tested') {
+              core.info('QA Gate passed: The `qa: tested` label was applied by a team member other than the PR author.');
+              return;
+            }
+
+            // For label events other than qa: tested (e.g. autolabeler), wait briefly
+            // to allow any concurrent label-removal workflow runs to settle
+            if (action === 'labeled' || action === 'unlabeled') {
+              await new Promise(resolve => setTimeout(resolve, 5000));
+            }
+
+            // Fetch current labels from the API instead of the event payload snapshot
+            // to avoid race conditions with concurrent workflow runs
+            const { data: currentLabels } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number
+            });
+            const hasQaTested = currentLabels.some(l => l.name === 'qa: tested');
+
             if (!hasQaTested) {
               core.setFailed('QA Gate failed: The `qa: tested` label is not present on this PR. A team member (other than the PR author) must apply this label after verifying the changes.');
               return;
