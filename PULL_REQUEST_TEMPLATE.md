@@ -40,14 +40,8 @@
 
 ## Testing
 
-- [ ] Unit tests added or updated
-- [ ] Manually tested in the browser
-
 <!-- Describe what was tested and any edge cases covered -->
 
 ## Checklist
 
-- [ ] No new `any` types introduced
-- [ ] No new console errors or warnings
-- [ ] All review comments from prior iterations resolved
-- [ ] Dependent PRs or packages are noted in the summary above
+<!-- Optional list of outstanding items that need to be completed before PR merges -->
