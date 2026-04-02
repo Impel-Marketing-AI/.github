@@ -20,6 +20,12 @@ jobs:
             const sender = context.payload.sender.login;
             const action = context.payload.action;
 
+            // Skip QA Gate for draft PRs
+            if (pr.draft) {
+              core.info('QA Gate skipped: PR is still in draft.');
+              return;
+            }
+
             // If the PR author applied the qa: tested label themselves, remove it and fail
             if (action === 'labeled' && context.payload.label?.name === 'qa: tested' && sender === prAuthor) {
               await github.rest.issues.removeLabel({
