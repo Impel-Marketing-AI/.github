@@ -17,8 +17,17 @@ This is the **organization-level `.github` repository** for [Impel-Marketing-AI]
 ├── CODEOWNERS                        ← Org-wide code ownership rules
 ├── labels/
 │   └── labels.json                   ← Shared label definitions
+├── PULL_REQUEST_TEMPLATE.md          ← Org-wide default PR template
 └── README.md                         ← This file
 ```
+
+### Pull Request Template
+
+The `PULL_REQUEST_TEMPLATE.md` at the repo root acts as the **default PR template for every repository** in the org that doesn't define its own. When a contributor opens a pull request in any org repo, GitHub automatically pre-fills the PR body with this template — enforcing a consistent format that includes a summary, Jira link, type-of-change checklist, and testing notes.
+
+A repo can override the org default by placing its own `PULL_REQUEST_TEMPLATE.md` (or a `.github/PULL_REQUEST_TEMPLATE/` directory) in its own repository.
+
+> **Reference:** [GitHub Docs — Creating a default community health file](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file)
 
 ### Release Drafter (org-level config)
 
