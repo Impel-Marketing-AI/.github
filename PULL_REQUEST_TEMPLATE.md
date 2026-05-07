@@ -17,31 +17,14 @@
 
 <!-- 1–3 sentences: what this PR does and why -->
 
-## Jira
-
-<!-- Link(s) to related Jira ticket(s) -->
-
--
-
-## Type of Change
-
-- [ ] `feat` — new feature or enhancement
-- [ ] `fix` — bug fix
-- [ ] `hotfix` — urgent fix targeting a release branch
-- [ ] `perf` — performance improvement
-- [ ] `refactor` — restructure without behavior change
-- [ ] `chore` — dependency update, config, or tooling
+**Jira:**
 
 ## Changes
 
-<!-- Briefly list the key areas touched (services, components, store, routing, etc.) -->
+<!-- Key areas touched: services, components, store, routing, etc. -->
 
 -
 
 ## Testing
 
-<!-- Describe what was tested and any edge cases covered -->
-
-## Checklist
-
-<!-- Optional list of outstanding items that need to be completed before PR merges -->
+<!-- What was tested and any edge cases covered -->
