@@ -13,11 +13,11 @@
     hotfix(reporting): HF-1361 hide reporting MFE behind LaunchDarkly
 -->
 
-**Jira:**
-
 ## Summary
 
 <!-- 1–3 sentences: what this PR does and why -->
+
+**Jira:**
 
 ## Changes
 
