@@ -5,18 +5,22 @@ sort-direction: ascending
 
 categories:
   - title: '🚀 Features'
-    labels:
-      - 'feature'
-      - 'enhancement'
+    when:
+      labels:
+        - 'feature'
+        - 'enhancement'
   - title: '🐛 Bug Fixes'
-    labels:
-      - 'bug'
+    when:
+      labels:
+        - 'bug'
   - title: '📦 Dependencies'
-    labels:
-      - 'dependencies'
+    when:
+      labels:
+        - 'dependencies'
   - title: '🧰 Maintenance'
-    labels:
-      - 'chore'
+    when:
+      labels:
+        - 'chore'
 
 autolabeler:
   - label: 'feature'
